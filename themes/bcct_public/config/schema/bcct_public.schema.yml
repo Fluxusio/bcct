@@ -1,0 +1,5 @@
+# Schema for the theme setting configuration file of the Tavolos B2C theme.
+
+bcct_public.settings:
+  type: theme_settings
+  label: 'Tavolos B2C settings'

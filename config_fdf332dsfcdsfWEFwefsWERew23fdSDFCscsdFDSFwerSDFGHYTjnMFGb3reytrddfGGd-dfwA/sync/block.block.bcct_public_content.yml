@@ -1,0 +1,22 @@
+uuid: 32bd26c9-9103-4ccd-8d23-5c2113829d19
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - bcct_public
+_core:
+  default_config_hash: 9EoWV2Lot6FVSr50t4hoKgiz1LIXYWNG-IIPYsWxBqo
+id: bcct_public_content
+theme: bcct_public
+region: content
+weight: 0
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  provider: system
+  label_display: '0'
+visibility: {  }

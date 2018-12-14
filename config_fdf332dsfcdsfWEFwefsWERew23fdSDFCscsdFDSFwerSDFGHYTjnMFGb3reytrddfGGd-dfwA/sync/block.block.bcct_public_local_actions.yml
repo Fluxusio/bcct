@@ -1,0 +1,20 @@
+uuid: 1222d54e-7bda-4dea-b587-3e211a6f1e23
+langcode: en
+status: true
+dependencies:
+  theme:
+    - bcct_public
+_core:
+  default_config_hash: 13GQpeITIJsp1kyPniXtWZfyFH87vb1xxJCHifL4UeE
+id: bcct_public_local_actions
+theme: bcct_public
+region: content
+weight: -20
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  provider: core
+  label_display: '0'
+visibility: {  }

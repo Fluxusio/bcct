@@ -1,0 +1,13 @@
+# Local services for development environments.
+#
+# Follow these steps to use this file:
+#   1. Copy this file and name it 'services.local.yml'
+#   2. See bcct.settings.local.php and follow the instructions there
+#
+# See default.services.yml for extensive documentation about each setting.
+
+parameters:
+  twig.config:
+    debug: true
+    auto_reload: true
+    cache: false

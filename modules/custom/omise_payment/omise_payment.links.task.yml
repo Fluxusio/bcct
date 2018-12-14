@@ -1,0 +1,23 @@
+# Omise customer routing definition
+omise_customer.settings_tab:
+  route_name: omise_customer.settings
+  title: 'Settings'
+  base_route: omise_customer.settings
+
+entity.omise_customer.canonical:
+  route_name: entity.omise_customer.canonical
+  base_route: entity.omise_customer.canonical
+  title: 'View'
+
+entity.omise_customer.edit_form:
+  route_name: entity.omise_customer.edit_form
+  base_route: entity.omise_customer.canonical
+  title: 'Edit'
+
+entity.omise_customer.delete_form:
+  route_name:  entity.omise_customer.delete_form
+  base_route:  entity.omise_customer.canonical
+  title: Delete
+  weight: 10
+
+

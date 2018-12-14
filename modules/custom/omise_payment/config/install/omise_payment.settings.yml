@@ -1,0 +1,5 @@
+secret_key: 'skey_test_58994n57dkuej599ipy'
+public_key: 'pkey_test_58994n572yqok8hfm2j'
+is_live: false
+use_js: true
+auth_fee: 0

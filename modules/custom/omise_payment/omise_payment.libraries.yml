@@ -1,0 +1,18 @@
+omise:
+  version: VERSION
+  js:
+    "https://cdn.omise.co/omise.js.gz": { minified: true }
+
+form:
+  version: VERSION
+  js:
+    js/omise_payment.form.js: {}
+  css:
+    theme:
+      css/omise.css: {}
+  dependencies:
+    - classy/messages
+    - core/jquery
+    - core/drupal
+    - core/jquery.once
+    - omise_payment/omise

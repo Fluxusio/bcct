@@ -1,0 +1,22 @@
+uuid: a65fb2bc-a0b4-420d-9c27-dd66eee39cb3
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - bcct_public
+_core:
+  default_config_hash: KHQIJ7Vfl25lTjzIc7qIvnuistt-Mw2O0kG4jCofmkI
+id: bcct_public_messages
+theme: bcct_public
+region: highlighted
+weight: 0
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  provider: system
+  label_display: '0'
+visibility: {  }

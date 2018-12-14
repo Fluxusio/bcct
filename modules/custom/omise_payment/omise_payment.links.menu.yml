@@ -1,0 +1,21 @@
+omise_payment.settings_form:
+  title: 'Omise Gateway'
+  route_name: omise_payment.admin_settings
+  description: 'Omise gateway'
+  parent: system.admin_config_services
+  weight: 99
+
+# Omise customer menu items definition
+entity.omise_customer.collection:
+  title: 'Omise customer list'
+  route_name: entity.omise_customer.collection
+  description: 'List Omise customer entities'
+  parent: system.admin_structure
+  weight: 100
+
+omise_customer.admin.structure.settings:
+  title: 'Omise customer settings'
+  description: 'Configure Omise customer entities'
+  route_name: omise_customer.settings
+  parent: system.admin_structure
+

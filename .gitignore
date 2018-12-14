@@ -1,0 +1,45 @@
+# See example.gitignore file for extensive documentation.
+
+# Core and dependencies
+core
+vendor
+
+# Contrib modules, themes, profiles
+modules/contrib
+themes/contrib
+profiles/contrib
+
+# External libraries
+libraries
+
+# Drush
+drush
+
+# Configuration files
+sites/*/settings.local.php
+sites/*/services.local.yml
+sites/sites.php
+
+# Paths with user-generated content
+sites/*/files
+sites/*/private
+
+# Sass
+**/.sass-cache
+**/.css.map
+
+# Logs
+*.log
+
+# MacOS and IDE
+.DS_Store
+.idea
+
+# AcquiaDevDesktop
+*.dd
+
+# Assorted files
+# @todo Add comment about what these are
+.ht.router.php
+/public/storage
+/.env

@@ -1,0 +1,23 @@
+uuid: 52717988-68a9-4ea5-8a9e-d0301079e51b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_credit_card
+  module:
+    - omise_payment
+    - user
+id: user.user.field_credit_card
+field_name: field_credit_card
+entity_type: user
+bundle: user
+label: 'Credit card'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:omise_customer'
+  handler_settings: {  }
+field_type: omise_customer_type

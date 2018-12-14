@@ -1,0 +1,7 @@
+{
+    "name": "omise/omise_payment",
+    "type": "drupal-custom-module",
+    "require": {
+        "omise/omise-php": "~2.0"
+    }
+}

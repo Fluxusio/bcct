@@ -1,0 +1,36 @@
+Index: modules/contrib/entity_browser/js/entity_browser.modal.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- entity_browser/js/entity_browser.modal.js	(date 1530527580000)
++++ entity_browser/js/entity_browser.modal.js	(date 1530527580000)
+@@ -71,6 +71,13 @@
+           $('body').css({overflow: 'inherit'});
+         }
+       });
++
++      // Fix for scroll page after closing entity browser modal for Bootstrap modal
++      $(document).on('hide.bs.modal', function (e) {
++        if($(e.target).find('iframe.entity-browser-modal-iframe').length) {
++          $('body').css('overflow', 'inherit');
++        }
++      });
+     }
+   };
+
+
+Index: modules/contrib/entity_browser/js/entity_browser.modal_selection.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- entity_browser/js/entity_browser.modal_selection.js	(date 1530527483000)
++++ entity_browser/js/entity_browser.modal_selection.js	(date 1530527483000)
+@@ -19,4 +19,6 @@
+   // via ajax commands.
+   parent.jQuery(parent.document).find('.entity-browser-modal-iframe').parents('.ui-dialog').eq(0).find('.ui-dialog-titlebar-close').click();
+
++  // Fix modal close behavior
++  parent.jQuery(parent.document).find('.entity-browser-modal-iframe').parents('.modal').eq(0).find('.close').click();
+ }(drupalSettings));

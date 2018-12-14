@@ -1,0 +1,11 @@
+<?php
+
+/**
+ * @file
+ * Bootstrap sub-theme.
+ *
+ * Implements hook preprocess page.
+ */
+function bcct_public_preprocess_page(&$variables) {
+
+}

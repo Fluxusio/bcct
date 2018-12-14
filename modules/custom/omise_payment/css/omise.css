@@ -1,0 +1,68 @@
+.omise-bank-logo {
+    display: block;
+    float: left;
+    width: 64px;
+    height: 64px;
+    padding: 8px;
+    margin-right: 16px;
+    border-radius: 8px;
+}
+.omise-bank-account-wrapper label {
+    margin-bottom: 0;
+}
+
+.BankInfo {
+    margin: 1.5em 0;
+}
+.BankInfo button {
+    margin-top: 20px;
+}
+.BankLogo {
+    display: block;
+    float: left;
+    width: 64px;
+    height: 64px;
+    padding: 8px;
+    margin-right: 16px;
+    border-radius: 8px;
+}
+.BankLogo img.card {
+    width: 60px;
+}
+.BankAccountNumber {
+    font-size: 1.4em;
+    font-weight: bold;
+}
+.BankAttribute {
+    line-height: 1.3em;
+    font-size: .875em;
+}
+.BankAttribute strong {
+    display: inline-block;
+    width: 60px;
+}
+.BankAttribute span.status {
+    font-style: italic;
+}
+.AccountStatus {
+    display: block;
+    clear: both;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.cards-list {
+    padding-left: 0;
+}
+.cards-list li {
+    list-style: none;
+}
+.cards-accepted {
+    padding-left: 0;
+    display: block;
+    clear: both;
+    width: 100%;
+    height: 65px;
+}
+.cards-accepted li {
+    list-style: none;
+}

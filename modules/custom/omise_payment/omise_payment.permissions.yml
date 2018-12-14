@@ -1,0 +1,22 @@
+use omise options:
+  title: 'Use Omise Gateway'
+
+add omise customer entities:
+  title: 'Create new Omise customer entities'
+
+administer omise customer entities:
+  title: 'Administer Omise customer entities'
+  description: 'Allow to access the administration form to configure Omise customer entities.'
+  restrict access: true
+
+delete omise customer entities:
+  title: 'Delete Omise customer entities'
+
+edit omise customer entities:
+  title: 'Edit Omise customer entities'
+
+view published omise customer entities:
+  title: 'View published Omise customer entities'
+
+view unpublished omise customer entities:
+  title: 'View unpublished Omise customer entities'

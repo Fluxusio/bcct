@@ -1,0 +1,44 @@
+<?php
+
+/**
+ * @file
+ * Contains omise_payment.module..
+ */
+
+/**
+ * Implements hook_page_top().
+ */
+function omise_payment_page_top(array &$page_top)
+{
+
+    // Add Omise checkout form to all pages
+    // @TODO - add it only when an Omise field is loaded
+    $page_top['omise_payment'] = \Drupal::formBuilder()->getForm('\Drupal\omise_payment\Form\CheckoutCollectCardForm');
+}
+
+/**
+ * Implements hook_theme()
+ * @param array $existing
+ * @param $type
+ * @param $theme
+ * @param $path
+ * @return array
+ */
+function omise_payment_theme(array $existing, $type, $theme, $path)
+{
+    return [
+        'omise_cards_list' => [
+            'variables' => [
+                'cards' => null,
+                'modulePath' => null,
+                'drupalOmiseCustomer' => null
+            ]
+        ],
+        'omise_bank_account' => [
+            'variables' => [
+                'bankAccount' => null
+            ]
+        ],
+    ];
+}
+

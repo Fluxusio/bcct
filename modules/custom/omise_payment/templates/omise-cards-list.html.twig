@@ -1,0 +1,73 @@
+{#
+/**
+* @file
+* Default theme implementation for Omise cards list.
+*
+* Available variables
+* - cards: Array with cards.
+*/
+#}
+<div class="omise-cards-wrapper">
+    {% if cards.status=="pending" %}
+        <div class="credit-card-item">
+            {{ cards.message }}
+        </div>
+    {% elseif cards %}
+        <ul class="cards-list">
+            {% for card in cards %}
+                <li>
+                    <div class="BankInfo">
+                        <div class="BankLogo">
+                            <img src="{{ card.extraInfo.logo }}" alt="{{ card.brand }}" class="card">
+                        </div>
+
+                        <div class="BankAccountNumber">
+                            ************{{ card.last_digits }}
+                        </div>
+
+                        <div class="BankAttribute">
+                            <strong>{{ "Name"|t }}</strong>
+                            {{ card.name }}
+                        </div>
+
+                        <div class="BankAttribute">
+                            <strong>{{ "Bank"|t }}</strong> {{ card.bank }}
+                        </div>
+
+                        <button class="button button--secondary btn-default btn icon-before remove-omise-card"
+                                id="{{ card.id }}" customer="{{ drupalOmiseCustomer }}" name="op"
+                                value="{{ "Remove"|t }}"><span class="icon glyphicon glyphicon-remove"
+                                                               aria-hidden="true"></span>
+                            {{ "Remove"|t }}</button>
+
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+
+    {% else %}
+        {{ "We accept the following cards:"|t }}
+        <ul class="cards-accepted">
+            <li>
+                <div class="BankLogo">
+                    <img src="{{ modulePath }}visa.png" alt="Visa" class="card">
+                </div>
+            </li>
+            <li>
+                <div class="BankLogo">
+                    <img src="{{ modulePath }}mastercard.png" alt="Mastercard" class="card">
+                </div>
+            </li>
+            <li>
+                <div class="BankLogo">
+                    <img src="{{ modulePath }}jcb.png" alt="JCB" class="card">
+                </div>
+            </li>
+            <li>
+                <div class="BankLogo">
+                    <img src="{{ modulePath }}diners.png" alt="Diners" class="card">
+                </div>
+            </li>
+        </ul>
+    {% endif %}
+</div>

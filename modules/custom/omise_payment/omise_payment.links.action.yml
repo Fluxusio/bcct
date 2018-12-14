@@ -1,0 +1,5 @@
+entity.omise_customer.add_form:
+  route_name: entity.omise_customer.add_form
+  title: 'Add Omise customer'
+  appears_on:
+    - entity.omise_customer.collection

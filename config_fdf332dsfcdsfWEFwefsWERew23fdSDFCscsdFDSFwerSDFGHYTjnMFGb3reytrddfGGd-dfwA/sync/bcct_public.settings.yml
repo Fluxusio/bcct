@@ -1,0 +1,24 @@
+cdn_provider: ''
+_core:
+  default_config_hash: _5qrDuRmWmRVjW00si3U1s1NrgrocA4N653EYGRfgEE
+favicon:
+  mimetype: image/vnd.microsoft.icon
+  path: ''
+  url: 'http://bcct.dd:8083/themes/bcct_public/favicon.ico'
+  use_default: true
+schemas:
+  bootstrap: 8000
+  bcct_public: 8000
+breadcrumb: '0'
+navbar_position: static-top
+table_responsive: '-1'
+table: ''
+features:
+  comment_user_picture: true
+  comment_user_verification: true
+  favicon: true
+  node_user_picture: true
+logo:
+  path: ''
+  url: ''
+  use_default: true

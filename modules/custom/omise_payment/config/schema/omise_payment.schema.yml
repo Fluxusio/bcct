@@ -1,0 +1,19 @@
+omise_payment.omise_settings:
+  type: config_object
+  label: 'Omise account settings'
+  mapping:
+    secret_key:
+      type: string
+      label: 'Omise secret key'
+    public_key:
+      type: string
+      label: 'Omise public key'
+    is_live:
+      type: boolean
+      label: 'Use Live environment'
+    use_js:
+      type: boolean
+      label: 'Use JS integration'
+    auth_fee:
+      type: integer
+      label: 'Authorization fee'

@@ -1,0 +1,20 @@
+uuid: d1af26e7-25da-47cc-a8dd-7ccd08df6414
+langcode: en
+status: true
+dependencies:
+  module:
+    - omise_payment
+    - user
+id: user.field_credit_card
+field_name: field_credit_card
+entity_type: user
+type: omise_customer_type
+settings:
+  target_type: omise_customer
+module: omise_payment
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

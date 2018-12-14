@@ -1,0 +1,22 @@
+uuid: d198e1b0-e0e9-4311-9ebb-a5168cf87f4d
+langcode: en
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - bcct_public
+_core:
+  default_config_hash: 8I8iACSa0sKO3k3jlvUG1ge52rfcKX7USJAQYnzuBgg
+id: bcct_public_help
+theme: bcct_public
+region: content
+weight: -30
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  provider: help
+  label_display: '0'
+visibility: {  }

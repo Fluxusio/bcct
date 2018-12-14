@@ -1,0 +1,22 @@
+uuid: 95c5d44f-7c7c-41b8-a804-c59c940d69ac
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - bcct_public
+_core:
+  default_config_hash: oXUb3JZR2WW5VOdw4HrhRicCsq51mCgLfRyvheG68ck
+id: bcct_public_breadcrumbs
+theme: bcct_public
+region: navigation
+weight: -2
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  provider: system
+  label_display: '0'
+visibility: {  }

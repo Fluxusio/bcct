@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * @file
+ * Contains install and update functions for Commerce Omise.
+ */
+
+/**
+ * Implements hook_requirements().
+ */
+function omise_payment_requirements($phase) {
+  $requirements = [];
+  if ($phase == 'install') {
+    if (!class_exists('\OmiseCharge')) {
+      $requirements['omise_payment_library'] = [
+        'description' => t('Payment Omise requires the omise_payment/omise_payment-php library.'),
+        'severity' => REQUIREMENT_ERROR,
+      ];
+    }
+  }
+
+  return $requirements;
+}

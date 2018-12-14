@@ -1,0 +1,56 @@
+omise_payment.admin_settings:
+  path: '/admin/config/omise'
+  defaults:
+    _form: '\Drupal\omise_payment\Form\SettingsForm'
+    _title: 'Omise Payment settings'
+  requirements:
+    _permission: 'administer site configuration'
+
+omise_payment.modal_collect_card_form:
+  path: '/omise_payment/form/modal_collect_card'
+  defaults:
+    _title: 'Collect Card on Modal'
+    _controller: '\Drupal\omise_payment\Controller\ModalCollectCardController::openModalForm'
+  requirements:
+    _permission: 'use omise options'
+  options:
+    _admin_route: TRUE
+
+omise_payment.webhook_listener:
+  path: '/omise_payment/webhook'
+  defaults:
+    _controller: '\Drupal\omise_payment\Controller\OmiseTransactionController::webhookListener'
+    _format: json
+  methods:
+    [POST]
+  requirements:
+    _permission: 'access content'
+
+#
+# AJAX callbacks
+#
+omise_payment.ajax_checkout_form_submit:
+  path: '/ajax/omise-payment/checkout'
+  defaults:
+    _controller: '\Drupal\omise_payment\Controller\OmiseTransactionController::getTokenCheckout'
+    _format: json
+  methods:
+    [POST]
+  requirements:
+    _permission: 'access content'
+
+omise_payment.ajax_remove_card:
+  path: '/ajax/omise-payment/remove-card'
+  defaults:
+    _controller: '\Drupal\omise_payment\Controller\OmiseTransactionController::removeCard'
+    _format: json
+  requirements:
+    _permission: 'use omise options'
+
+omise_payment.ajax_remove_bank_account:
+  path: '/ajax/omise-payment/remove-bank-account'
+  defaults:
+    _controller: '\Drupal\omise_payment\Controller\OmiseTransactionController::removeRecipient'
+    _format: json
+  requirements:
+    _permission: 'use omise options'

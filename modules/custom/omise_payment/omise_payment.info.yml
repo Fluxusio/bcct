@@ -1,0 +1,8 @@
+name: Payment Omise
+type: module
+description: 'Provides integration for Omise Payments'
+version: '8.x-1.0'
+core: 8.x
+package: Omise
+
+configure: omise_payment.admin_settings
