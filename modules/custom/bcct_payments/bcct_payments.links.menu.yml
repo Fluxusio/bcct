@@ -1,0 +1,7 @@
+bcct_payments.settings_form:
+  title: 'BCCT Payment settings'
+  route_name: bcct_payments.settings_form
+  description: 'BCCT Payment settings'
+  parent: system.admin_config
+  weight: 99
+

@@ -1,0 +1,6 @@
+bcct_payments:
+  charge_type: "recurring"
+  recurring_period: "monthly"
+  amount: 0
+  signup_amount: 0
+  currency: "THB"

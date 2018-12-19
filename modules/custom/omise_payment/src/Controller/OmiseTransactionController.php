@@ -453,24 +453,46 @@ class OmiseTransactionController
     function getTokenCheckout(Request $request = null)
     {
         try {
+            $customerId=null;
+            $tokenCard=null;
+            if (isset($_POST['omiseToken'])) {
+                $tokenCard = $_POST['omiseToken'];
+                // Unset parameter to avoid multiple executions refreshing page
+                unset($_POST['omiseToken']);
+                $email = isset($_POST['email']) ? $_POST['email'] : null;
+                $amount = isset($_POST['amount']) ? $_POST['amount'] : null;
+                $customer = $this->createCustomerWithCard($tokenCard, $email);
+                if ($customer && isset($customer['id'])) {
+                    $customerId = $customer['id'];
+                } else {
+
+                    throw new \OmiseException(t('Error creating Omise customer. Please, contact administrator'));
+                }
+            }
+
+
+
+            $response = [
+                'result' => 'success',
+                'data' => [
+                    'omiseTokenCustomer' => $customerId,
+                    'omiseTokenCard' => isset($customer['default_card']) ? $customer['default_card'] : $tokenCard
+                ]
+            ];
+
+
+            /*
+
             // Load data from request
             $customerId = null;
             $amount = null;
             $data = null;
-            if (isset($_POST['omiseToken']) && isset($_POST['email']) && $_POST['email'] != '') {
+            if (isset($_POST['omiseToken'])) {
                 $tokenCard = $_POST['omiseToken'];
                 // Unset parameter to avoid multiple executions refreshing page
                 unset($_POST['omiseToken']);
-                $email = $_POST['email'];
+                $email = isset(isset($_POST['email']))?$_POST['email']:null;
                 $amount = isset($_POST['amount']) ? $_POST['amount'] : null;
-            } else {
-
-                // Decode request body
-                $data = json_decode($request->getContent(), true);
-
-                $tokenCard = $data['omiseToken'];
-                $email = $data['email'];
-                $amount = isset($data['amount']) ? $data['amount'] : null;
             }
 
             // Do checkout action
@@ -483,27 +505,29 @@ class OmiseTransactionController
                     ]
                 )
             );
-            if ($tokenCard && $email) {
-                // Check if exists user in Drupal from email
-                $drupalUser = user_load_by_mail($email);
+            if ($tokenCard) {
+                $omiseDrupalCustomer=null;
+                if ($email) {
+                    // Check if exists user in Drupal from email
+                    $drupalUser = user_load_by_mail($email);
 
 
-                if (!$drupalUser) {
-                    // Doesn't exist in Drupal
-                    // Create user
-                    $drupalUser = User::create([
-                        'name' => $email,
-                        'mail' => $email,
-                        'pass' => '12345', // @TODO randomize?
-                        'status' => 1
-                    ]);
-                    $drupalUser->save();
+                    if (!$drupalUser) {
+                        // Doesn't exist in Drupal
+                        // Create user
+                        $drupalUser = User::create([
+                            'name' => $email,
+                            'mail' => $email,
+                            'pass' => '12345', // @TODO randomize?
+                            'status' => 1
+                        ]);
+                        $drupalUser->save();
+                    }
+
+                    // Check if user has already a customer in Omise
+                    $omiseDrupalCustomer = $this->getOmiseCustomerByUid($drupalUser->id());
                 }
-
-                // Check if user has already a customer in Omise
-                $omiseDrupalCustomer = $this->getOmiseCustomerByUid($drupalUser->id());
-
-                if (empty($omiseDrupalCustomer)) {
+                if (!$omiseDrupalCustomer || empty($omiseDrupalCustomer)) {
                     // Drupal user has not customer in Omise
                     // Create customer in Omise and in Drupal
                     // @TODO Maybe it doesnt exist in Drupal but it does in Omise... implement webhook?
@@ -555,7 +579,7 @@ class OmiseTransactionController
                 ];
 
                 // Do charge if amount is sent
-                /*
+
                 $charge = null;
                 if ($amount) {
                     $charge = $this->doRefundableCharge($customerId, $amount);
@@ -574,7 +598,7 @@ class OmiseTransactionController
                         $request->query->add($omise_ids);
                     }
                 }
-                */
+
 
 
                 // This aims to skip double callback checkout+reservation
@@ -598,10 +622,10 @@ class OmiseTransactionController
                         $request->query->add($extraParameters);
 
                         // Create reservation
-                        /*
+
                         $rc = new ReservationController(new AccountProxy(), Database::getConnection());
                         return $rc->post($data['restaurantId'], $request);
-                        */
+
 
                     } else {
                         if ($charge) {
@@ -639,8 +663,9 @@ class OmiseTransactionController
                 $response->send();
                 return null;
             }
-
+*/
             return new JsonResponse($response);
+
         } catch
         (\OmiseException $e) {
 

@@ -5,6 +5,8 @@
  * Contains omise_payment.module..
  */
 
+use Drupal\omise_payment\Entity\OmiseCustomer;;
+
 /**
  * Implements hook_page_top().
  */
@@ -42,3 +44,17 @@ function omise_payment_theme(array $existing, $type, $theme, $path)
     ];
 }
 
+/**
+ * Implements hook_entity_insert
+ * @param \Drupal\Core\Entity\EntityInterface $entity
+ */
+function omise_payment_entity_insert(Drupal\Core\Entity\EntityInterface $entity) {
+    if ($entity->bundle()=="user" &&
+    $entity->get('field_credit_card') &&
+        $entity->get('field_credit_card')->target_id) {
+        // Set uid on customer id if is set the field
+        $drupalOmiseCustomer = OmiseCustomer::load($entity->get('field_credit_card')->target_id);
+        $drupalOmiseCustomer->set('user_id',$entity->id());
+        $drupalOmiseCustomer->save();
+    }
+}

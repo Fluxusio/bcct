@@ -1,0 +1,8 @@
+name: 'BCCT Payments'
+type: module
+description: 'BCCT Payments handle ways of taking money to members'
+core: 8.x
+package: 'BCCT'
+dependencies:
+  - user
+  - omise_payment

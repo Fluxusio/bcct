@@ -1,0 +1,86 @@
+<?php
+
+/**
+ * @file
+ * Contains bcct_payments.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+use Drupal\omise_payment\Controller\OmiseTransactionController;
+use Drupal\omise_payment\Entity\OmiseCustomer;
+
+/**
+ * Implements hook_help().
+ */
+function bcct_payments_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the bcct_payments module.
+    case 'help.page.bcct_payments':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('BCCT Payments handle ways of taking money to members') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+
+
+/**
+ * Implements hook_entity_insert
+ * @param \Drupal\Core\Entity\EntityInterface $entity
+ */
+function bcct_payments_entity_insert(Drupal\Core\Entity\EntityInterface $entity) {
+    if ($entity->bundle()=="user" &&
+        $entity->get('field_credit_card') &&
+        $entity->get('field_credit_card')->target_id) {
+
+        // We are creating new user
+        // Check if we have to charge on signup
+        $chargeType=\Drupal::config('bcct_payments.settings')
+            ->get('charge_type');
+        if ($chargeType=="on_creation") {
+            // Payment settings set on creation
+            // Load data from settings
+            $amountToCharge = \Drupal::config('bcct_payments.settings')
+                ->get('amount');
+            $amountToChargeOnSignup = \Drupal::config('bcct_payments.settings')
+                ->get('signup_amount');
+            $currency = \Drupal::config('bcct_payments.settings')
+                ->get('currency');
+            // Override general amount if is set one for signup
+            if ($amountToChargeOnSignup>0) {
+                $amountToCharge=$amountToChargeOnSignup;
+            }
+            if ($amountToCharge>0) {
+                $drupalOmiseCustomer = OmiseCustomer::load($entity->get('field_credit_card')->target_id);
+                $omiseCustomer=$drupalOmiseCustomer->get('omise_id')->value;
+                $charge=OmiseTransactionController::doRefundableCharge($omiseCustomer, $amountToCharge);
+                if ($charge['status']=="error") {
+                    \Drupal::logger('bcct_payments')->error(
+                        t('Error trying to charge on user creation @amount @currency to @customer',
+                            [
+                                '@customer' => $omiseCustomer,
+                                '@amount' => $amountToCharge,
+                                '@currency' => $currency
+                            ]
+                        )
+                    );
+                } else {
+                    \Drupal::logger('bcct_payments')->error(
+                        t('Succesfully charged amount on user creation of @amount @currency to @customer',
+                            [
+                                '@customer' => $omiseCustomer,
+                                '@amount' => $amountToCharge,
+                                '@currency' => $currency
+                            ]
+                        )
+                    );
+                }
+            }
+        }
+    }
+}
+
