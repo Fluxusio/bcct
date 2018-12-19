@@ -2,6 +2,7 @@ module:
   admin_toolbar: 0
   admin_toolbar_tools: 0
   automated_cron: 0
+  bcct_payments: 0
   big_pipe: 0
   block: 0
   block_content: 0
@@ -23,6 +24,7 @@ module:
   help: 0
   image: 0
   link: 0
+  mailsystem: 0
   menu_ui: 0
   node: 0
   omise_payment: 0
@@ -37,6 +39,7 @@ module:
   text: 0
   toolbar: 0
   user: 0
+  username_policy: 0
   views_ui: 0
   menu_link_content: 1
   views: 10

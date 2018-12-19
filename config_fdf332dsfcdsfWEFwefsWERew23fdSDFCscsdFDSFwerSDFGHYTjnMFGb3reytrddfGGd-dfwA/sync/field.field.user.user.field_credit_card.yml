@@ -12,12 +12,16 @@ field_name: field_credit_card
 entity_type: user
 bundle: user
 label: 'Credit card'
-description: ''
-required: false
+description: 'We require your credit card for automatically charge your member monthly fee'
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
   handler: 'default:omise_customer'
-  handler_settings: {  }
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+    auto_create: 0
 field_type: omise_customer_type
